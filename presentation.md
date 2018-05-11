@@ -1,4 +1,4 @@
-footer: mike@wire.com
+footer: mihail@gerasimenko.me
 # [fit] E2EE
 # [End-to-End Encryption]
 # [fit] for iOS Developer.
