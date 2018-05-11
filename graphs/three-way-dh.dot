@@ -1,0 +1,17 @@
+digraph ThreeWayDH {
+	ratio=fill;
+ 	size="3,3";
+	node [shape=plaintext];
+	A [color=white fontcolor=white];
+	B [color=white fontcolor=white];
+	a [color=white fontcolor=white];
+	b [color=white fontcolor=white];
+	A -> B [style=invis color=white];
+	A -> b [dir="both" color=white];
+	a -> B [dir="both" color=white];
+	a -> b [dir="both" color=white];
+	
+	{ rank=same; A B }
+	{ rank=same; a b } 
+}
+
