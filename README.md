@@ -12,7 +12,7 @@ If you ever wondered:
 
 # Binary build.
 
-Check `presentation.pdf` if you would like to see the final result.
+Check [Releases page](https://github.com/mikeger/e2ee-presentation/releases/) if you would like to see the final result.
 
 # Building.
 
@@ -20,14 +20,12 @@ Check `presentation.pdf` if you would like to see the final result.
 
 You need the following software on your system in order to build this presentation:
 
-- GraphViz.
-- Deckset 1.
+- Deckset 1 or 2.
 
 ## How to build.
 
-1. Run ```make diagrams```
-2. Open the `presentation.md` with Deckset.
-3. Export the PDF.
+1. Open the `presentation.md` with Deckset.
+1. Export the PDF.
 
 # License.
 
