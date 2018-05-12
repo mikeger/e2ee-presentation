@@ -597,6 +597,6 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 ![inline](images/twitter.png) [twitter.com/GerasimenkoMiha](twitter.com/GerasimenkoMiha)
 
-![inline](images/cc_4_0.png) ![inline](images/cc.png) Presentation is CC BY 4.0
+![inline](images/cc_4_0.png) ![inline](images/cc.png) Presentation is CC BY 4.0 [mikeger/e2ee-presentation](https://github.com/mikeger/e2ee-presentation)
 
 Illustrations: Wired magazine, HBO, Either Edward J. Krasnoborski or F. Mitchell.; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane.
