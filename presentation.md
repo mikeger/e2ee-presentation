@@ -1,4 +1,5 @@
 footer: mihail@gerasimenko.me
+autoscale: true
 ## **E2EE**
 ## [End-to-End Encryption]
 ## for iOS Developer.
@@ -11,7 +12,7 @@ footer: mihail@gerasimenko.me
 
 - Graduated Master of Applied Mathematics at Odessa State `I.I.Mechnikov` University.
 - 9 years in iOS development.
-- 5 years berliner.
+- 5 years Berliner.
 - Proud father of Alexander and Daniel.
 
 ^ So I studied applied mathematics at Odessa State University, since then worked on quite some projects. I am working and living in Berlin for quite some time now. And I moved to Berlin just to start working on the project that is known now as Wire.
@@ -25,73 +26,110 @@ footer: mihail@gerasimenko.me
 - Motivate to think about privacy when implementing the apps.
 - Inspire to create the new E2EE apps.
 
-^ So why I am giving this talk, again? I am happy to share my knowledge that I've developed while working at Wire with everyone. This includes some basic understanding what the end to end encryption is and I hope it can inspire more developers to take this approach or utilize it not only developing the messaging apps but also when working on the other solutions. Part of the motivation is of course to share the 
-experience I've had while working in my current company: Wire.
+^ So why I am giving this talk, again? I am happy to share my knowledge that I've developed while working at Wire with everyone. This includes some basic understanding what the end to end encryption is and I hope it can inspire more developers to take this approach or utilize it not only developing the messaging apps but also when working on the other solutions. Part of the motivation is of course to share the experience I've had while working in my current company: Wire.
 
 ---
 ![fit original](images/wired.png)
 
-[^1]
-
-^ Wire.
-
-[^1]: Image copyright: Wired magazine, all rights reserved.
+^ W-i-r-e.
 
 ---
 ![fit original](images/other_wire.jpg)
 
-[^2]
-
 ^ OK, not that Wire.
-
-[^2]: Image copyright: I am sure it is copyrighted.
 
 ---
 # About Wire.
 
-![left fit](images/win311logo.png)
+![left](images/win311logo.png)
 
 - I am the part of the awesome iOS team at Wire.
-- Wire is open-source 🎉: `https://github.com/wireapp/wire-ios` and other repos.
-- Wire is one of the pioneers of End-to-End encryption: first version released in #TODO.
-- Wire is available as the encrypted Slack replacement.
+- We are one of E2EE pioneers: first version released in 2015.
+- Wire is available as the team communication solution.
 
-^ Ah yeah! That one. Wire is the fully end-to-end encrypted messenger platform. We are developing the secure and fun collaboration tool that you can use on all modern platforms. We where one of the pioneers of the E2EE. TODO
+^ Ah yeah! That one. Wire is the fully end-to-end encrypted messenger platform. We are developing the secure and fun collaboration tool that you can use on all modern platforms. We where one of the pioneers of the end-to-end encryption, too.
 
 ---
-# Disclaimer.
 
-- I am not the inventor of E2EE.
-- I am not responsible for the design of the encryption at Wire.
+## We are open-source
+# `github.com/wireapp`
 
-^ I think it is worth mentioning that I am not the one behind the original Wire protocol implementaiton. I know it on the level of the detail that is necessary to work with it and of course speaking about it on the iOS developers conference. 
+^ Good news: we are also open-source, so you can see our bugs and how we are fixing them.
+
+---
+# It's live. Also PRs.
+
+^ Live, with the pull requests! Pretty awesome, also some pressure to work in the public. 
+
+---
+# Small Disclaimer, I am:
+
+- Not the one behind designing the Wire E2EE implementation.
+- Not responsible for the development of Wire crypto part.
+- Going to simplify a lot and give the possibility to read further.
+
+^ I think it is worth mentioning that I am not the one behind the original Wire protocol implementation. I know it on the level of the detail that is necessary to work with it and _speaking about it on the iOS developers conference_. 
+
+---
+# How we proceed?
+
+- Speak about the phenomenon of forbidding the E2EE.
+- Define what is good End to End Encryption.
+- See what is necessary on iOS to keep it good.
+
+^ First I wanted to talk about the controversy around the secure messaging protocols and the idea of forbidding it, then I wanted to define in detail what is the good end to end encryption and wrap it up by sharing with you what is necessary to do for the iOS developer to keep it that way.
+
+---
+# Forbidding reality.
+
+Forbidding E2EE can be done using:
+
+- Forbid Mathematics.
+- Forbid Apps.
+- Block the Internet.
+- Backdoor it.
+
+^ I want to speak about forbidding the encryption thing. There are several ways it can be achieved. Those are to forbid the mathematics, forbid the apps, or more precisely the app stores, forbid the internet access for the messaging apps or simply force to backdoor the apps.
+
+---
+# Forbidding reality: does not work ❌.
+
+Forbidding E2EE can be done using:
+
+- Forbid Mathematics - if it would be possible :)
+- Forbid Apps - trying: 🇨🇳 ❌.
+- Block the Internet - trying: 🇨🇳, 🇷🇺, 🇮🇷... ❌.
+- Backdoor it - trying: 🇬🇧, ... ❌.
+
+^ Different countries are trying to find their path to forbid the reality and find the way for citizens not to use the end to end encrypted apps. Lucky enough no one is trying to forbid the math behind the encryption. Some are removing the apps from the app stores, but it does not really work. Some are blocking the server IP addresses, but it is really easy to use VPN or the proxy. Some "besorgte bürger" concerned citizens are trying to make apps include the backdoor to find the way to bypass the encryption. Lucky enough Wire is safe being under the Swiss jurisdiction.
 
 ---
 # Prologue: The Invention.
 
 ![inline original](images/greece.gif)
 
-^ In the king's age of the ancient Greece, the warriors used to have the shields that had only one handle - in the middle. Hence, it was not easy to hold that kind of shield and it was not big enough to cover the soldier's body. The people armed with this kind of shields had to fight spread one by one and was inferior comparing the horsemen, not mentioning the armoured knights or the chariots. 
-However the horses, chariots and armour is not something that was possible for the common citizen to purchase.
+^ In this aspect I would like to bring up something that I found fascinating in the history of the Ancient Greece. In the king's age of the ancient Greece, the warriors used to have the shields that had only one handle - in the middle. Hence, it was not easy to hold that kind of shield and it was not big enough to cover the soldier's body. The people armed with this kind of shields had to fight spread one by one and was inferior comparing the horsemen, not mentioning the heavy knights or the chariots. 
+However the horses, chariots and amour is not something that was possible for the common citizen to purchase.
 
 ---
 ![left fit](images/hoplite.gif)
 
-Hoplite with their aspis [^3]
+Hoplite with their aspis.
 
-A hoplite was primarily a free citizen who was responsible for procuring his armour and weapon. Many famous personalities, philosophers, artists and poets fought as hoplites.
+A hoplite was primarily a free citizen who was responsible for procuring his amour and weapon. Many famous personalities, philosophers, artists and poets fought as hoplites.
 
-[^3]: Public domain, Either Edward J. Krasnoborski or F. Mitchell. - [website](http://www.au.af.mil/au/awc/awcgate/gabrmetz/gabr0066.htm).
-
-^ The important innovation has changed the battelfield: the invention of the shield with two handles, where the hand is going until the elbow into one of the straps and holding the second one. This allowed holding the bigger shield, so the warriors could stand side by side creating the wall invulnerable for the enemy. 
-This changed the balance on the battlefield making the footman infantry the primary force, where the footmen did not have to buy the expensive ammunition and horses any more. Those where now the regular citizens who can afford to buy or assemble the shield and the sword. Those who are the main force on the battlefield soon enough start to feel themselves the main force in the country. So the kings and nobleman are loosing the power in the state in favor of the regular citizens. So the democracy is born from the invention of the second handle on the shield.
+^ The important innovation has changed the battlefield: the invention of the shield with two handles, where the hand is going until the elbow into one of the straps and holding the second one. This allowed holding the bigger shield, so the warriors could stand side by side creating the wall invulnerable for the enemy. 
+This changed the balance on the battlefield making the footman infantry the primary force, where the footmen did not have to buy the expensive ammunition and horses any more. Those where now the regular citizens who can afford to buy or assemble the shield and the sword or the spear. Those who are the main force on the battlefield soon enough start to feel themselves the main force in the country. So the kings and nobleman where loosing their power in the state in favor of the regular citizens. So the democracy is born from the invention of the second handle on the shield. So could be the kings forbidding those new shields as they saw that they where loosing the power in the state? I don't think so, even if they try. 
+In the number of countries the safe and private communication is the single channel for the people to speak freely and participate in the discussion that is necessary to build the true democracy.
 
 ---
 ## Bottomline.
 ![](images/stasi.jpg)
 
 ### Forbidding encrypted messaging would not work. 
-### It is the invention and invention is not possible to forbid. TODO
+### Invention is not possible to forbid.
+
+^ Forbidding encrypted messaging would not work. Invention is not possible to forbid.
 
 ---
 ## So what is 
@@ -100,14 +138,16 @@ This changed the balance on the battlefield making the footman infantry the prim
 
 ![fit](images/what-is-e2ee.png)
 
+^ So what is the End-To-End encryption, exactly?
+
 ---
 # Defining the problem.
 
 ```
-	 Sender 🦊                       Receiver 🐸
-	+---------+          ?                              
-	| Message |  -----------------> 
-	+---------+              
+		 Sender 🦊                       Receiver 🐸
+		+--------+           ?                              
+		|   💌   |  -------------------> 
+		+--------+              
 ```
 
 ^ Let's first understand the problem. It's really easy to articulate. The _Sender_ would like to communicate with the receiver and send receiver a message.
@@ -116,15 +156,15 @@ This changed the balance on the battlefield making the footman infantry the prim
 # Defining the problem.
 
 ```
-	 Sender 🦊                       Receiver 🐸
-	+---------+          ?                              
-	| Message |  -----------------> 
-	+---------+              
+	Sender 🦊                       Receiver 🐸
+	+--------+           ?
+	|   💌   |  ------------------->
+	+--------+
 ```
 
 ![](images/nsa.png)
 
-^ The first and the most basic constraint is that neither Sender nor the Receiver would like anyone else except the receiver to read the message. Other _significant_ constraint is that it is not possible for sender and receiver to meet and exchange the keys offline.
+^ The first and the most basic constraint is that neither Sender, our foxy, nor the Receiver, our froggy, would like anyone else except the receiver to read the message, so the server does not know the message content. Other _significant_ constraint is that it is not possible for sender and receiver to meet and exchange the keys offline.
 
 ---
 # Solution 🎉: Diffie-Hellman (DH) key exchange.
@@ -132,8 +172,8 @@ This changed the balance on the battlefield making the footman infantry the prim
 ```
  Sender 🦊  <----- Public keys ----> Receiver 🐸
 ```
-1. Sender and receiver generate the keypairs: $$(K^{Publ}_{🦊}, K^{Priv}_{🦊}), (K^{Publ}_{🐸}, K^{Priv}_{🐸})$$
-2. Exchange: $$📱_{🦊} \xrightarrow[{K^{Publ}_{🦊}}]{} 🐸$$, $$📱_{🐸} \xrightarrow[{K^{Publ}_{🐸}}]{} 🦊$$
+1. Sender and receiver generate the key pairs: $$(K^{Pub}_{🦊}, K^{Priv}_{🦊}), (K^{Pub}_{🐸}, K^{Priv}_{🐸})$$
+2. Exchange: $$📱_{🦊} \xrightarrow[{K^{Pub}_{🦊}}]{} 🐸$$, $$📱_{🐸} \xrightarrow[{K^{Pub}_{🐸}}]{} 🦊$$
 
 ^ Sure enough people familiar with the encryption would say that sender and receiver can use the public key crypto to exchange the public key information to generate the shared secret. They both, the sender and the receiver, generate the key pairs: public and private keys. Then they exchange the public keys and based on those generate the shared secret.
 
@@ -153,71 +193,91 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 ---
 # Problem 1: Receiver not online ⚠️
 
+![](images/wo_side_by_side.jpg)
+
 - Using the DH or RSA, both participants must be online in order to perform the key exchange.
 - Not possible for reasons: phone or other device is not online.
+
+^ Now here we have the first issue: if the message receiver is not online, it is not possible to start the key exchange. Also it is not feasible for the sender to wait for the receiver to go online.
 
 ---
 # Solution.
 
-- Receiver can publish his public key in advance to the server: $$📱_{🐸} \xrightarrow[{K^{Publ}_{🐸}}]{} 🌍$$.
-- Sender can fetch it on demand: $$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
+- Receiver can publish his public key in advance to the server: $$📱_{🐸} \xrightarrow[{K^{Pub}_{🐸}}]{} 🌍$$.
+- Sender can fetch it on demand: $$🌍 \xrightarrow[{K^{Pub}_{🐸}}]{} 📱_{🦊}$$.
 
-^ The participant who might want to receive the encrypted message might upload his public key in advance to the server. Next time someone wants to communicate with him it is possible to fetch the public key from the server:
-
----
-## In Wire $$K^{Publ}_{🐸}$$ is called the _Prekey_.
+^ The participant who might want to receive the encrypted message might upload his public key in advance to the server. Next time someone wants to communicate with him it is possible to fetch the public key from the server: easy!
 
 ---
-# Problem 2: Authenticity ⚠️
+## In Wire $$K^{Pub}_{🐸}$$ is called the _Prekey_.
 
-- What if someone generates another key pair: $$(K^{Priv}_{🐊}, K^{Publ}_{🐊})$$.
-- Upload it to the server pretending he is 🐸: $$📱_{🐊} \xrightarrow[{K^{Publ}_{🐊}}]{} 🌍$$.
+![](images/richard-payette-522432-unsplash.jpg)
 
 ---
 # Problem 2: Authenticity ⚠️
 
-- Anyone who would like to talk with 🐸 will actually create the shared secret with 🐊!
-- Then 🐊 can decide to create the shared secret with 🦊 and relay the messages reading them.
+- What if someone generates another key pair: $$(K^{Priv}_{🦅}, K^{Pub}_{🦅})$$.
+- Upload it to the server pretending he is 🐸: $$📱_{🦅} \xrightarrow[{K^{Pub}_{🦅}}]{} 🌍$$.
+
+^ Oh come on, so we have come to another problem now: what if SOMEONE, let's say the eagle, replace the public key on the server with his or her own, and pretend to be our froggy?
 
 ---
 # Problem 2: Authenticity ⚠️
 
-- This is called ~~crocodile~~man-in-the-middle attack.
+- Anyone who would like to talk with 🐸 will actually create the shared secret with 🦅!
+- Then 🦅 can decide to create the shared secret with 🦊 and relay the messages reading them.
+
+^ This is actually quite possible to happen. The shared secret then would be created between the sender and the eagle. The Eagle would then be able to either create another secure channel with the receiver to relay the messages, or simply read and reply on the messages, impersonating the receiver.
+
+---
+# Problem 2: Authenticity ⚠️
+
+- This is called ~~g~~man-in-the-middle attack.
 
 ```
- 🦊  <-- Secure channel --> 🐊 <-- Secure channel --> 🐸
+ 🦊  <-- Secure channel --> 🦅 <-- Secure channel --> 🐸
 ```
 ---
 # Solution: Key Verification 🔑.
 
 - It is possible to sign the key with another private key and verify the signature.
 - In HTTPs: the authority signatures (public keys) are saved in the keychain. 
-- In messaging: users must check the key fingerpints of other party.
+- In messaging: users must check the key fingerprints of other party.
+
+^ Lucky enough it is possible to sign the public key and verify the signature. However you need to always remember to receive the signature to compare against via the trusted communication channel.
 
 ---
 ## In Wire 
 ## it is called 
 ## the _fingerprint verification_.
 
+![](images/cmdr-shane-610506-unsplash.jpg)
+
 ---
 # Problem 3: Forward secrecy.
 
-- If the 🐊 would record all the encrypted communication between 🦊 and 🐸...
+- If the 🦅 would record all the encrypted communication between 🦊 and 🐸...
 - And then find out the $$K^{Shared}_{🦊🐸}$$.
 - All the previous communication can be decrypted.
+
+^ Let's imagine that our Eagle is recording the encrypted messages all the time to it's endless hard drives. Then if eventually it would be possible to decrypt one message from the communication between the sender and receiver, it would be possible using the same key to decrypt all the previous messages. This is pretty bad!
 
 ---
 # Solution: Session keys / Key rotation.
 
 - Generate the new key for each message.
-- Rotate the key using the Hash Key Derivation Function (HKDF) - basically hash the previous key: $$K^{n}_{🦊🐸} = HKDF(K^{n-1}_{🦊🐸})$$
-- It is not possible to find out key $$K^{n-1}_{🦊🐸}$$ from $$K^{n}_{🦊🐸}$$.
+- Rotate using Hash Key Derivation Function (HKDF) - basically hash the previous key: $$K^{n}_{🦊🐸} = HKDF(K^{n-1}_{🦊🐸})$$
+- Can't calculate $$K^{n-1}_{🦊🐸}$$ from $$K^{n}_{🦊🐸}$$.
+
+^ So again lucky enough we can do the following trick: let's hash the shared secret every time we encrypt the message. Then the receiver can also hash his key and decrypt the message. The good salted hash function is really hard to invert, so we can be safe again! Uh.
 
 ---
 # Problem 4: Backward / Future secrecy.
 
-- If 🐊 would find out the $$K^{n}_{🦊🐸}$$...
+- If 🦅 would find out the $$K^{n}_{🦊🐸}$$...
 - He can $$HKDF$$ it, too, and find out the next key $$n+1$$.
+
+^ But again, it is easy to advance the hash forward, so the intruder once he or she finds out one key number n, it is also possible to advance the key forward, and then it is possible to continue reading the communication from that message on.
 
 ---
 # Solution: DH re-negotiation, mixing the initial session keys with the new ones.
@@ -225,12 +285,16 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 - Every message we send, we also include the new public key signed with our initial session key.
 - Receiver also generate another key pair and restart the session.
 
+^ To fix that we can when sending the message include the new signed prekey, so the receiver can generate the new Diffie-Hellman shared secret. The intruder cannot do that, since he or she cannot sign the new prekey.
+
 ---
 # Problem 5: It's not me i.e. _Plausible Deniability_.
 
-- Remember problem 2: authenticity?
+- Remember problem 2: Authenticity?
 - It is good to check if the person talking to you is the one you want to talk to.
 - It is also possible to say that only the sender can sign the message, since only sender has his private key.
+
+^ So you remember this problem when we wanted to check who is really the sender? It is good to have, but this has one downside: you can also associate the sender with the message, which has some implications.
 
 ---
 # Plausible Deniability
@@ -239,35 +303,41 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 - It is possible to associate the message with the sender.
 - Can be the proof in the court 👨‍⚖️: message is signed by the sender!
 
+^ So, what is the problem with associating the message with the sender? This has the downside: sometimes it is not good to be able to identify the sender, for example if you are in-mated, the dissident, trying to discuss the future of your country in the private chat. 
+
 ---
 # Solution: Derive signing keys from the shared key.
 
 - Derive the signing MAC key from the _shared secret_.
 - Roll it forward after each DH re-negotiation.
-- 
----
-# Session start: Triple DH.
+- Both participants are able to create the signed message.
+
+^ So the great idea here is to derive the signing key from the shared secret, that is known to both sender and the receiver. Then it is possible for both participants to sign the message with the same MAC key, and it is not possible to say who signed the particular message. It's all good, but...
 
 ---
-![left](build/three-way-dh.pdf)
+# All good.
+# In theory.
 
-- $$K_🦊$$ and $$K_🐸$$ are the long-term identity key pairs.
-- $$k_🦊$$ and $$k_🐸$$ are the _ephemeral handshake_ key pairs.
+![](images/katya-austin-554633-unsplash.jpg)
 
-$$K_{master} = hash($$
-$$DH(K_🦊, k_🐸) | $$
-$$DH(K_🐸, k_🦊) | $$
-$$DH(k_🦊, k_🐸))$$
+^ All good in theory.
 
-^ In short, instead of creating one key pair, two peers are creating two key pairs: Public identity keys (capital A and B) and the handshake pairs (small a and b). The session master key is created as the hash of TODO
+---
+# Cruel reality:
+
+## having the screenshot of the message is enough for the attribution.
+
+^ Here comes the cruel reality: having the screenshot of the message is usually enough for the attribution.
 
 ---
 # Why good E2EE was not available earlier?
 
 - No good protocol to solve problems 3-5.
-- The performance of the keypair $$K^{Publ}_{🦊}, K^{Priv}_{🦊}$$ generation improved dramatically, since:
+- The performance of the key pair $$(K^{Pub}, K^{Priv})$$ generation improved dramatically, since:
 - Elliptic curve crypto development.
 - Mobile CPUs are way faster nowadays.
+
+^ So you might wonder why the good end-to-end messengers became available only recently? Well, all those problems where not solved at once, the protocol development went the long way from PGP, Off-the-record protocol and others. Together with that, the performance of the cryptography also went the long way to the current state.
 
 ---
 # Recap: good E2EE is:
@@ -278,32 +348,61 @@ $$DH(k_🦊, k_🐸))$$
 1. Backward (Future) Secrecy.
 1. Plausible Deniability.
 
+^ Just to recap, the GOOD end-to-end encryption must have those five qualities: Confidentiality, Authenticity, Forward Secrecy, Backward or Future Secrecy and the Plausible Deniability.
+
 ---
-## Wire protocol that solves problems 1-5 is called Axolotl/Double Ratchet.
+## The Wire protocol that solves problems 1-5 is called _Proteus_.
+
+^ The Wire protocol that solves problems 1-5 is called _Proteus_.
+
+---
+# But...
+
+---
+### Even the best protocol cannot protect from iTunes backup ;)
+
+^ Even the best protocol cannot protect from iTunes backup ;)
 
 ---
 # How it applies to iOS.
-        
+
 - Basics of not sharing the data with Apple.
 - Push Notifications (APNs) 💔 E2EE.
 - Share extension + E2EE.
 
+^ So in this chapter let's discuss how not to make the end-to-end encryption useless when running on the iOS device, also some information of how to cope with the push notifications 
+
 ---
-# Basics of not sharing the data with Apple.
+# Threat model.
+
+- Device must be passcode-protected.
+- Not jailbroken.
+- Up to date.
+- So no filesystem access is possible.
+
+^ Let's say the use must also care about his privacy to some extent. This includes setting the passcode, not jailbreaking and updating the iOS to the most recent version.
+
+---
+# Basics of not sharing.
 
 - Apple cares about user privacy.
+- Image and Video metadata.
 - iTunes and iCloud backups.
 - CallKit 🤙.
 
-^ Apple is one of the bigger companies that care about the user privacy. This does not mean that we can rest now and stop thinking about the users of our apps.
+^ Thanks to Tim Cook, the Apple is one of the bigger companies that care about the user privacy. However this does not mean that we can rest now and stop thinking about the users of our apps. 
 
 ---
-# Image and Video metadata.
+# Image, Video metadata.
+
+![left](images/rawpixel-369775-unsplash.jpg)
 
 Every image or video taken on the iPhone has a significant amount of embedded metadata:
 - Device location 📍.
 - Model 📱.
 - Camera information 📷.
+
+^ Every image or video taken on the iPhone has a significant amount of embedded metadata, including the device location, model and the camera information. This is not the information you usually think you are sharing when you upload the picture.
 
 ---
 # Strip metadata using `ImageIO`.
@@ -318,6 +417,8 @@ guard let imageSource = CGImageSourceCreateWithData(data, nil),
 ```
 
 [^4]: Source: https://github.com/wireapp/wire-ios-images/blob/develop/Sources/Image%20Processing/NSData+MediaMetadata.swift
+
+^ Let's strip this information before uploading it. The ImageIO framework can help us with this task. We have the image as Data, and we can create the CoreGraphics image from it as imageSource.
 
 ---
 # Strip metadata using `ImageIO`.
@@ -334,6 +435,8 @@ guard let imageDestination = CGImageDestinationCreateWithData(mutableData,
 	throw MetadataError.cannotCreate
 }
 ```
+
+^ Then we can create the new image destination.
 
 ---
 # Strip metadata using `ImageIO`.
@@ -353,11 +456,15 @@ guard CGImageDestinationFinalize(imageDestination) else {
 }
 ```
 
+^ And finally create the new image data excluding the metadata.
+
 ---
 # iTunes and iCloud backups.
 
 - The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud.
 - Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
+
+^ The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud. Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
 
 ---
 # iTunes and iCloud backups.
@@ -372,19 +479,24 @@ try mutableURL.setResourceValues(resourceValues)
 
 [^5]: Source: https://github.com/wireapp/wire-ios/blob/develop/WireExtensionComponents/Utilities/URL%2BBackup.swift
 
+^ So let's exclude the sensitive files, like the message database or the key material from the iTunes backup. This can be achieved using the URLResourceValues object having isExcludedFromBackup set to true that can be set on the file URL.
+
 ---
 # CallKit.
 
 - CallKit used to sync the calls metadata between the devices.
 - iOS 11 fixed that.
 
+^ When the CallKit was introduced, it used to sync the calls metadata between the devices. So call information also went to Apple backend.
+
 ---
 # Push Notifications (APNs) 💔 E2EE.
 
 - The message sent via the push notification is visible to Apple.
-- APNs allows sending the "VoIP Puhs Notifications".
-- Using **VoIP** push, the iOS application can run the code while not active.
-- During this time, the application must fetch the message from the backend and display the local push
+- APNs allows sending the "VoIP APN".
+- Using **VoIP** push, the iOS application can run the code in the background, then it can fetch messages and display the local push.
+
+^ So let's talk about the push notifications. First of all, the wire backend does not know the message content, or even what kind of message must be sent. So it cannot really include the message text in the push notification. Lucky enough, there is the way for the end-to-end encrypted app to be able to dispatch the notification.
 
 ---
 
@@ -401,16 +513,20 @@ try mutableURL.setResourceValues(resourceValues)
      |                    +---------- VoIP APN ----------> BG
      |                    |                 |              BG
      | <--- Fetching the new messages via HTTPs ---------+ BG
-     |                    |                 |              BG
-     |                    |                 |              BG
-     |                    |                 |              |
+     |                    |                 |          +-Display-+
+     |                    |                 |          |  Local  |
+     |                    |                 |          +--Push---+
 ```
+
+^ We send the so called voice over IP push notification that is designed for the calling applications, so they can set up the call data channel and display the call push notification. It's the great candidate for us, since we are able to spin the app in the background, fetch the encrypted message from the server, decrypt it locally and display it's contents as the local push notification.
 
 ---
 # Problems.
 
-- If the client cannot manage to fetch the message content from the backend in time, the push notifications are not going to be delivered.
-- If the push notification receiver is offline, then the push notification scheduler can drop some notifications, so the client would not have a chance to fetch messages.
+- If app cannot manage to fetch and decrypt the message in time, the push notifications are not going to be delivered.
+- If the receiver is offline, then the APN scheduler can drop some notifications, so no chance to fetch messages.
+
+^ But this comes with the cost: the VoIP push has the very short time to live, also the run time in the background is limited. If the client cannot manage to fetch the message content from the backend in time, the push notifications are not going to be delivered. Also if the receiver is offline, then the APN scheduler can drop some notifications, so client has no chance to fetch the messages.
 
 ---
 # Possible solution: Background Fetch.
@@ -422,6 +538,8 @@ try mutableURL.setResourceValues(resourceValues)
 application.setMinimumBackgroundFetchInterval(timeInterval)
 ```
 
+^ Lucky enough we can ask iOS to wake our app time to time to fetch the message from the backend, if any.
+
 ---
 # Share Extensions 💔💔💔 E2EE.
 
@@ -431,32 +549,19 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 [^6]: https://medium.com/@wireapp/the-challenge-of-implementing-ios-share-extension-for-end-to-end-encrypted-messenger-dd33b52b1e97
 
+^ Another big topic is the share extensions. They on iOS are running in the separate process. The problem is then the crypto material and the app database must be then moved to the shared container. The file access must be synchronized, since the encryption of the message is advancing the encryption session forward.
+
 ---
 # Big chats 🤕 E2EE.
+
+![](images/joel-filipe-260016-unsplash.jpg)
 
 - The message must be delivered to each participant.
 - To the each participant's device!
 - So when you send one message, say 1 Kilobyte of data in the conversation with N participants where each participant has K devices you actually have to send $$ 1 Kilobyte \times N \ times K $$ messages.
 - 100 participants, each have 5 devices: **0.5 Megabyte**.
 
----
-# Is it worth it?
-
-As every tech out there, E2EE has it pros and cons.
-- Harder to implement.
-- Need to think.
-- Less points of failure.
-
----
-# Points of failure.
-
-- Probability of the data leak $$ 0 < P(💧) \ll 1$$. 
-- For $$N$$ points: total probability is $$\bigcup_{i=1}^{N}P(💧_i) = P_💦$$. 
-- Let's remove the point $$N$$: $$\bigcup_{i=1}^{N-1}P(💧_i) = P'_💦$$. 
-- $$P_💦 > P'_💦$$.
-
-^ Let's define the probability of the data breach as P-leak, where P is between zero and one. It can never be zero, but can be one if your app really sucks. Given you have _N_ points where the data is travelling through, the total leak probability is the probability of leak happening on any point. 
-Reducing the amount of points of failure to N minus one, i.e. removing one arbitrary point of failure is always making the failure less likely to happen.
+^ In the group chat, if someone is sending the message it must be encrypted for each receiver separately. Also worth mentioning that in Wire we have the true multi-device support. This means each device has the encryption session with all participants in the chat. This means that in the really big conversation sending 1 kilobyte message means uploading 500 kilobyte of data.
 
 ---
 # Sneak peek: MLS.
@@ -465,13 +570,23 @@ Reducing the amount of points of failure to N minus one, i.e. removing one arbit
 - IETF initiative to develop the common protocol for secure instant messaging.
 - The protocol is being developed in cooperation between IETF, Twitter, Mozilla, Google, Facebook and Wire.
 
+^ So there is something that I am really excited about. The major companies are working together on the single state of the art protocol called Messaging Layer Security. Twitter, Mozilla, Google, Facebook and Wire as part of the IETF initiative are working together to define the future of the messaging.
+
 ---
 # MLS: Stay tuned!
 
 - Improves the message sending in the big (>100) group conversations.
 - One standard that can potentially unify the different messengers.
-- https://www.ietf.org/mailman/listinfo/MLS
-- https://datatracker.ietf.org/doc/draft-omara-mls-architecture/
+- [https://www.ietf.org/mailman/listinfo/MLS](https://www.ietf.org/mailman/listinfo/MLS)
+- [https://datatracker.ietf.org/doc/draft-omara-mls-architecture/](https://datatracker.ietf.org/doc/draft-omara-mls-architecture/)
+- [https://github.com/facebookresearch/asynchronousratchetingtree](https://github.com/facebookresearch/asynchronousratchetingtree)
+
+^ This can be potentially used to make different messengers be able to communicate with each other. They found also the smart way to overcome the group chat size limitation. Would be really interesting to see where it is going in the future, if IETF would approve it as the standard.
+
+---
+# Hope you enjoyed it!
+
+^ Hope you enjoyed it! Let's build together the future where it is possible to communicate privately thanks to technology.
 
 ---
 # Thanks!
@@ -482,5 +597,6 @@ Reducing the amount of points of failure to N minus one, i.e. removing one arbit
 
 ![inline](images/twitter.png) [twitter.com/GerasimenkoMiha](twitter.com/GerasimenkoMiha)
 
-![inline](images/cc_4_0.png) ![inline](images/cc.png) CC BY 4.0 
+![inline](images/cc_4_0.png) ![inline](images/cc.png) Presentation is CC BY 4.0
 
+Illustrations: Wired magazine, HBO, Either Edward J. Krasnoborski or F. Mitchell.; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane.
