@@ -1,7 +1,8 @@
 footer: mihail@gerasimenko.me
-# [fit] E2EE
-# [End-to-End Encryption]
-# [fit] for iOS Developer.
+## **E2EE**
+## [End-to-End Encryption]
+## for iOS Developer.
+### Mike Gerasymenko, Wire
 	
 ^ Good morning UIKonf! My name is Mike, and my surname is not possible to pronounce. Today I want to talk with you about something that I am working professionally with every day for quite some time. It's called _End-to-End encryption_. Don't worry just yet, over the course of my talk I am going to explain what it means and why someone might need it. But first things first, let's get introduced.
 
@@ -103,29 +104,36 @@ This changed the balance on the battlefield making the footman infantry the prim
 # Defining the problem.
 
 ```
- Sender 🦊                       Receiver 🐸
-+---------+          ?                              
-| Message |  -----------------> 
-+---------+              
+	 Sender 🦊                       Receiver 🐸
+	+---------+          ?                              
+	| Message |  -----------------> 
+	+---------+              
 ```
 
 ^ Let's first understand the problem. It's really easy to articulate. The _Sender_ would like to communicate with the receiver and send receiver a message.
 
 ---
-# Defining the problem: Confidentiality.
+# Defining the problem.
 
-![inline center](images/nsa.png)
+```
+	 Sender 🦊                       Receiver 🐸
+	+---------+          ?                              
+	| Message |  -----------------> 
+	+---------+              
+```
+
+![](images/nsa.png)
 
 ^ The first and the most basic constraint is that neither Sender nor the Receiver would like anyone else except the receiver to read the message. Other _significant_ constraint is that it is not possible for sender and receiver to meet and exchange the keys offline.
 
 ---
-# Solution 🎉: Public-key crypto: Diffie-Hellman (DH) key exchange or RSA.
+# Solution 🎉: Diffie-Hellman (DH) key exchange.
 
 ```
  Sender 🦊  <----- Public keys ----> Receiver 🐸
 ```
-1. Sender and receiver generate public and private key: $$K^{Publ}_{🦊}, K^{Priv}_{🦊}, K^{Publ}_{🐸}, K^{Priv}_{🐸}$$
-2. They exchange public keys: $$📱_{🦊} \xrightarrow[{K^{Publ}_{🦊}}]{} 🐸$$, $$📱_{🐸} \xrightarrow[{K^{Publ}_{🐸}}]{} 🦊$$
+1. Sender and receiver generate the keypairs: $$(K^{Publ}_{🦊}, K^{Priv}_{🦊}), (K^{Publ}_{🐸}, K^{Priv}_{🐸})$$
+2. Exchange: $$📱_{🦊} \xrightarrow[{K^{Publ}_{🦊}}]{} 🐸$$, $$📱_{🐸} \xrightarrow[{K^{Publ}_{🐸}}]{} 🦊$$
 
 ^ Sure enough people familiar with the encryption would say that sender and receiver can use the public key crypto to exchange the public key information to generate the shared secret. They both, the sender and the receiver, generate the key pairs: public and private keys. Then they exchange the public keys and based on those generate the shared secret.
 
@@ -140,7 +148,7 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
                    shared secret key
 ```
 
-**This is how TLS (and HTTPs over it) is working.**
+^ This is how TLS (and HTTPs over it) is working.
 
 ---
 # Problem 1: Receiver not online ⚠️
@@ -152,20 +160,17 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 # Solution.
 
 - Receiver can publish his public key in advance to the server: $$📱_{🐸} \xrightarrow[{K^{Publ}_{🐸}}]{} 🌍$$.
-- Next time someone wants to communicate with him it is possible to fetch the public key from the server:
-$$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
+- Sender can fetch it on demand: $$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
 
-^ The participant who might want to receive the encrypted message might upload his public key in advance to the server.
+^ The participant who might want to receive the encrypted message might upload his public key in advance to the server. Next time someone wants to communicate with him it is possible to fetch the public key from the server:
 
 ---
-## In Wire 
-## $$K^{Publ}_{🐸}$$ 
-## is called the Prekey.
+## In Wire $$K^{Publ}_{🐸}$$ is called the _Prekey_.
 
 ---
 # Problem 2: Authenticity ⚠️
 
-- What if someone generates another key pair: $$K^{Priv}_{🐊}, K^{Publ}_{🐊}$$.
+- What if someone generates another key pair: $$(K^{Priv}_{🐊}, K^{Publ}_{🐊})$$.
 - Upload it to the server pretending he is 🐸: $$📱_{🐊} \xrightarrow[{K^{Publ}_{🐊}}]{} 🌍$$.
 
 ---
@@ -185,15 +190,14 @@ $$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
 ---
 # Solution: Key Verification 🔑.
 
-- It is possible to sign the key with another private key.
+- It is possible to sign the key with another private key and verify the signature.
 - In HTTPs: the authority signatures (public keys) are saved in the keychain. 
-- It is possible therefore to check the signature.
-- In messaging: users must check the key fingerpints of the people they are communicating with.
+- In messaging: users must check the key fingerpints of other party.
 
 ---
 ## In Wire 
 ## it is called 
-## the fingerprint verification.
+## the _fingerprint verification_.
 
 ---
 # Problem 3: Forward secrecy.
@@ -213,7 +217,7 @@ $$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
 # Problem 4: Backward / Future secrecy.
 
 - If 🐊 would find out the $$K^{n}_{🦊🐸}$$...
-- He can hash it, too, and find out the next key $$n+1$$.
+- He can $$HKDF$$ it, too, and find out the next key $$n+1$$.
 
 ---
 # Solution: DH re-negotiation, mixing the initial session keys with the new ones.
@@ -232,17 +236,28 @@ $$🌍 \xrightarrow[{K^{Publ}_{🐸}}]{} 📱_{🦊}$$.
 # Plausible Deniability
 
 - So what's the issue here?
-- If the messages are getting compromised, it is possible to associate the message with the sender.
-- Can be the proof in the court 👨‍⚖️: message is fingerprinted by the sender!
+- It is possible to associate the message with the sender.
+- Can be the proof in the court 👨‍⚖️: message is signed by the sender!
 
 ---
-## Solution: Three-way 
-## initial DH key negotiation.
+# Solution: Derive signing keys from the shared key.
+
+- Derive the signing MAC key from the _shared secret_.
+- Roll it forward after each DH re-negotiation.
+- 
+---
+# Session start: Triple DH.
 
 ---
-![inline](build/three-way-dh.pdf)
+![left](build/three-way-dh.pdf)
 
-$$K_{master} = hash(dh(A, b), dh(B, a), dh(a, b))$$
+- $$K_🦊$$ and $$K_🐸$$ are the long-term identity key pairs.
+- $$k_🦊$$ and $$k_🐸$$ are the _ephemeral handshake_ key pairs.
+
+$$K_{master} = hash($$
+$$DH(K_🦊, k_🐸) | $$
+$$DH(K_🐸, k_🦊) | $$
+$$DH(k_🦊, k_🐸))$$
 
 ^ In short, instead of creating one key pair, two peers are creating two key pairs: Public identity keys (capital A and B) and the handshake pairs (small a and b). The session master key is created as the hash of TODO
 
@@ -264,10 +279,7 @@ $$K_{master} = hash(dh(A, b), dh(B, a), dh(a, b))$$
 1. Plausible Deniability.
 
 ---
-## Wire protocol 
-## that solves problems 1-5 
-## is called 
-## Axolotl/Double Ratchet.
+## Wire protocol that solves problems 1-5 is called Axolotl/Double Ratchet.
 
 ---
 # How it applies to iOS.

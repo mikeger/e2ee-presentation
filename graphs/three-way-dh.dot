@@ -2,16 +2,16 @@ digraph ThreeWayDH {
 	ratio=fill;
  	size="3,3";
 	node [shape=plaintext];
-	A [color=white fontcolor=white];
-	B [color=white fontcolor=white];
-	a [color=white fontcolor=white];
-	b [color=white fontcolor=white];
-	A -> B [style=invis color=white];
-	A -> b [dir="both" color=white];
-	a -> B [dir="both" color=white];
-	a -> b [dir="both" color=white];
+	"K 🦊" [color=white fontcolor=white];
+	"K 🐸" [color=white fontcolor=white];
+	"k 🦊" [color=white fontcolor=white];
+	"k 🐸" [color=white fontcolor=white];
+	"K 🦊" -> "K 🐸" [style=invis color=white];
+	"K 🦊" -> "k 🐸" [dir="both" color=orange];
+	"k 🦊" -> "K 🐸" [dir="both" color=green];
+	"k 🦊" -> "k 🐸" [dir="both" color=red];
 	
-	{ rank=same; A B }
-	{ rank=same; a b } 
+	{ rank=same; "K 🦊" "K 🐸" }
+	{ rank=same; "k 🦊" "k 🐸" } 
 }
 
