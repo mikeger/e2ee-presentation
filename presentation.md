@@ -5,38 +5,98 @@ autoscale: true
 ## for iOS Developer.
 ### Mike Gerasymenko, Wire
 	
-^ Good morning UIKonf! My name is Mike, and my surname is not possible to pronounce. Today I want to talk with you about something that I am working professionally with every day for quite some time. It's called _End-to-End encryption_. Don't worry just yet, over the course of my talk I am going to explain what it means and why someone might need it. But first things first, let's get introduced.
+^ Good morning UIKonf! My name is Mike Gerasymenko. Today I want to talk with you about something that I am working professionally with every day for quite some time. It's called _End-to-End encryption_. Don't worry just yet, over the course of this talk I'll explain what it means and why someone might need it. But first things first, let's get introduced.
 
 ---
 # Introduction.
 
-- Graduated Master of Applied Mathematics at Odessa State `I.I.Mechnikov` University.
+- Master of Applied Mathematics at Odessa State `I.I.Mechnikov` University.
 - 9 years in iOS development.
 - 5 years Berliner.
-- Proud father of Alexander and Daniel.
 
-^ So I studied applied mathematics at Odessa State University, since then worked on quite some projects. I am working and living in Berlin for quite some time now. And I moved to Berlin just to start working on the project that is known now as Wire.
+^ So I studied applied mathematics at Odessa State University, since then worked on quite some projects. I am working and living in Berlin for quite some time now.
+
+---
+# Forbidding reality.
+
+Recently everyone seem to be willing to forbid the end-to-end encrypted messaging. How this can be achieved?
+
+- Forbid Mathematics.
+- Forbid Apps.
+- Block the Internet.
+- Backdoor it.
+
+^ I want to speak about forbidding the encryption thing. Recently everyone seem to be willing to forbid the end-to-end encrypted messaging. There are several ways it can be achieved. Those are to forbid the mathematics, forbid the apps, or more precisely the app stores, forbid the internet access for the messaging apps or simply force to backdoor the apps.
+
+---
+# Forbidding reality: does not work ❌.
+
+Recently everyone seem to be willing to forbid the end-to-end encrypted messaging. How this can be achieved?
+
+- Forbid Mathematics - if it would be possible :)
+- Forbid Apps - trying: 🇨🇳 ❌.
+- Block the Internet - trying: 🇨🇳, 🇷🇺, 🇮🇷... ❌.
+- Backdoor it - trying: 🇬🇧, ... ❌.
+
+^ Different countries are trying to find their path to forbid the reality and find the way for citizens not to use the end to end encrypted apps. Lucky enough no one is trying to forbid the math behind the encryption. Some are removing the apps from the app stores, but it does not really work. Some are blocking the server IP addresses, but it is really easy to use VPN or the proxy. Some "besorgte bürger" concerned citizens are trying to make apps include the backdoor to find the way to bypass the encryption. Lucky enough Wire is safe being under the Swiss jurisdiction.
+
+---
+## Bottomline.
+![](images/stasi.jpg)
+
+### Forbidding encrypted messaging would not work. 
+### Invention is not possible to forbid.
+
+^ Forbidding encrypted messaging would not work. Invention is not possible to forbid.
 
 ---
 # Motivation.
 
 ## Why I am giving this talk?
 
-- Help devs understand what the end-to-end encryption is exactly about.
+- Help to understand what the end-to-end encryption is exactly about.
+
+^ So why I am giving this talk, again? I am happy to share my knowledge in the topic. This includes some basic understanding what the end to end encryption is.
+
+---
+# Motivation.
+
+## Why I am giving this talk?
+
+- Help to understand what the end-to-end encryption is exactly about.
+- Motivate to think about privacy when implementing the apps.
+
+^ I hope it can inspire more developers to take this approach or utilize it not only developing the messaging apps but also when working on the other solutions. Part of the motivation is of course to share the experience I've had while working in my current company: Wire.
+
+---
+# Motivation.
+
+## Why I am giving this talk?
+
+- Help to understand what the end-to-end encryption is exactly about.
 - Motivate to think about privacy when implementing the apps.
 - Inspire to create the new E2EE apps.
-
-^ So why I am giving this talk, again? I am happy to share my knowledge that I've developed while working at Wire with everyone. This includes some basic understanding what the end to end encryption is and I hope it can inspire more developers to take this approach or utilize it not only developing the messaging apps but also when working on the other solutions. Part of the motivation is of course to share the experience I've had while working in my current company: Wire.
-
+ 
+^ And certainly to inspire the creation of the new end to end encrypted apps, and this is not only about the messaging.
+ 
 ---
 ![fit original](images/wired.png)
 
-^ W-i-r-e.
+^ By the way, I work at W-i-r-e. Oh, not Wired.
 
 ---
 ![fit original](images/other_wire.jpg)
 
-^ OK, not that Wire.
+^ OK, not THAT Wire.
+
+---
+# About Wire.
+
+![left](images/win311logo.png)
+
+- I am the part of the awesome iOS team at Wire.
+
+^ Ah yeah! That one. I am the part of the awesome iOS team at Wire. 
 
 ---
 # About Wire.
@@ -45,13 +105,24 @@ autoscale: true
 
 - I am the part of the awesome iOS team at Wire.
 - We are one of E2EE pioneers: first version released in 2015.
-- Wire is available as the team communication solution.
 
-^ Ah yeah! That one. Wire is the fully end-to-end encrypted messenger platform. We are developing the secure and fun collaboration tool that you can use on all modern platforms. We where one of the pioneers of the end-to-end encryption, too.
+^ Wire is the fully end-to-end encrypted messenger platform. We are developing the secure and fun collaboration tool that you can use on all modern platforms. We where one of the pioneers of the end-to-end encryption, too.
+
+---
+# About Wire.
+
+![left](images/win311logo.png)
+
+- I am the part of the awesome iOS team at Wire.
+- We are one of E2EE pioneers: first version released in 2015.
+- Available as the team communication solution, too 🎉.
+
+^ Since 2018 Wire is avilable as the team communication solution, too.
 
 ---
 
-## We are open-source
+![left](images/finn-hackshaw-131930-unsplash.jpg)
+
 # `github.com/wireapp`
 
 ^ Good news: we are also open-source, so you can see our bugs and how we are fixing them.
@@ -62,74 +133,28 @@ autoscale: true
 ^ Live, with the pull requests! Pretty awesome, also some pressure to work in the public. 
 
 ---
-# Small Disclaimer, I am:
+# How we proceed?
 
-- Not the one behind designing the Wire E2EE implementation.
-- Not responsible for the development of Wire crypto part.
-- Going to simplify a lot and give the possibility to read further.
+- Define what is good End to End Encryption.
 
-^ I think it is worth mentioning that I am not the one behind the original Wire protocol implementation. I know it on the level of the detail that is necessary to work with it and _speaking about it on the iOS developers conference_. 
+^ First, let's start up by defining what the end to end enctyption is/
 
 ---
 # How we proceed?
 
-- Speak about the phenomenon of forbidding the E2EE.
 - Define what is good End to End Encryption.
 - See what is necessary on iOS to keep it good.
 
-^ First I wanted to talk about the controversy around the secure messaging protocols and the idea of forbidding it, then I wanted to define in detail what is the good end to end encryption and wrap it up by sharing with you what is necessary to do for the iOS developer to keep it that way.
+^ Then understand what is necessary to do for the iOS developer to keep it that way.
 
 ---
-# Forbidding reality.
+# How we proceed?
 
-Forbidding E2EE can be done using:
+- Define what is good End to End Encryption.
+- See what is necessary on iOS to keep it good.
+- Look into the future of the private messaging.
 
-- Forbid Mathematics.
-- Forbid Apps.
-- Block the Internet.
-- Backdoor it.
-
-^ I want to speak about forbidding the encryption thing. There are several ways it can be achieved. Those are to forbid the mathematics, forbid the apps, or more precisely the app stores, forbid the internet access for the messaging apps or simply force to backdoor the apps.
-
----
-# Forbidding reality: does not work ❌.
-
-Forbidding E2EE can be done using:
-
-- Forbid Mathematics - if it would be possible :)
-- Forbid Apps - trying: 🇨🇳 ❌.
-- Block the Internet - trying: 🇨🇳, 🇷🇺, 🇮🇷... ❌.
-- Backdoor it - trying: 🇬🇧, ... ❌.
-
-^ Different countries are trying to find their path to forbid the reality and find the way for citizens not to use the end to end encrypted apps. Lucky enough no one is trying to forbid the math behind the encryption. Some are removing the apps from the app stores, but it does not really work. Some are blocking the server IP addresses, but it is really easy to use VPN or the proxy. Some "besorgte bürger" concerned citizens are trying to make apps include the backdoor to find the way to bypass the encryption. Lucky enough Wire is safe being under the Swiss jurisdiction.
-
----
-# Prologue: The Invention.
-
-![inline original](images/greece.gif)
-
-^ In this aspect I would like to bring up something that I found fascinating in the history of the Ancient Greece. In the king's age of the ancient Greece, the warriors used to have the shields that had only one handle - in the middle. Hence, it was not easy to hold that kind of shield and it was not big enough to cover the soldier's body. The people armed with this kind of shields had to fight spread one by one and was inferior comparing the horsemen, not mentioning the heavy knights or the chariots. 
-However the horses, chariots and amour is not something that was possible for the common citizen to purchase.
-
----
-![left fit](images/hoplite.gif)
-
-Hoplite with their aspis.
-
-A hoplite was primarily a free citizen who was responsible for procuring his amour and weapon. Many famous personalities, philosophers, artists and poets fought as hoplites.
-
-^ The important innovation has changed the battlefield: the invention of the shield with two handles, where the hand is going until the elbow into one of the straps and holding the second one. This allowed holding the bigger shield, so the warriors could stand side by side creating the wall invulnerable for the enemy. 
-This changed the balance on the battlefield making the footman infantry the primary force, where the footmen did not have to buy the expensive ammunition and horses any more. Those where now the regular citizens who can afford to buy or assemble the shield and the sword or the spear. Those who are the main force on the battlefield soon enough start to feel themselves the main force in the country. So the kings and nobleman where loosing their power in the state in favor of the regular citizens. So the democracy is born from the invention of the second handle on the shield. So could be the kings forbidding those new shields as they saw that they where loosing the power in the state? I don't think so, even if they try. 
-In the number of countries the safe and private communication is the single channel for the people to speak freely and participate in the discussion that is necessary to build the true democracy.
-
----
-## Bottomline.
-![](images/stasi.jpg)
-
-### Forbidding encrypted messaging would not work. 
-### Invention is not possible to forbid.
-
-^ Forbidding encrypted messaging would not work. Invention is not possible to forbid.
+^ In the very end we are going to take a peek into the future of the private messaging. Let's go!
 
 ---
 ## So what is 
@@ -156,11 +181,13 @@ In the number of countries the safe and private communication is the single chan
 # Defining the problem.
 
 ```
-	Sender 🦊                       Receiver 🐸
-	+--------+           ?
-	|   💌   |  ------------------->
-	+--------+
+		 Sender 🦊                       Receiver 🐸
+		+--------+           ?                              
+		|   💌   |  -------------------> 
+		+--------+              
 ```
+
+# In the context.
 
 ![](images/nsa.png)
 
@@ -173,9 +200,19 @@ In the number of countries the safe and private communication is the single chan
  Sender 🦊  <----- Public keys ----> Receiver 🐸
 ```
 1. Sender and receiver generate the key pairs: $$(K^{Pub}_{🦊}, K^{Priv}_{🦊}), (K^{Pub}_{🐸}, K^{Priv}_{🐸})$$
+
+^ Sure enough people familiar with the encryption would say that sender and receiver can use the public key crypto to exchange the public key information to generate the shared secret. They both, the sender and the receiver, generate the key pairs: public and private keys. 
+
+---
+# Solution 🎉: Diffie-Hellman (DH) key exchange.
+
+```
+ Sender 🦊  <----- Public keys ----> Receiver 🐸
+```
+1. Sender and receiver generate the key pairs: $$(K^{Pub}_{🦊}, K^{Priv}_{🦊}), (K^{Pub}_{🐸}, K^{Priv}_{🐸})$$
 2. Exchange: $$📱_{🦊} \xrightarrow[{K^{Pub}_{🦊}}]{} 🐸$$, $$📱_{🐸} \xrightarrow[{K^{Pub}_{🐸}}]{} 🦊$$
 
-^ Sure enough people familiar with the encryption would say that sender and receiver can use the public key crypto to exchange the public key information to generate the shared secret. They both, the sender and the receiver, generate the key pairs: public and private keys. Then they exchange the public keys and based on those generate the shared secret.
+^ Then they exchange the public keys and based on those generate the shared secret.
 
 ---
 # Public-key crypto.
@@ -195,8 +232,9 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 
 ![](images/wo_side_by_side.jpg)
 
-- Using the DH or RSA, both participants must be online in order to perform the key exchange.
-- Not possible for reasons: phone or other device is not online.
+Using the DH or RSA, both participants must be online in order to perform the key exchange.
+
+This is not possible for reasons: phone or other device is not online.
 
 ^ Now here we have the first issue: if the message receiver is not online, it is not possible to start the key exchange. Also it is not feasible for the sender to wait for the receiver to go online.
 
@@ -230,21 +268,32 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 ^ This is actually quite possible to happen. The shared secret then would be created between the sender and the eagle. The Eagle would then be able to either create another secure channel with the receiver to relay the messages, or simply read and reply on the messages, impersonating the receiver.
 
 ---
-# Problem 2: Authenticity ⚠️
-
-- This is called ~~g~~man-in-the-middle attack.
+# This is called ~~g~~man-in-the-middle attack.
 
 ```
+
+
  🦊  <-- Secure channel --> 🦅 <-- Secure channel --> 🐸
 ```
 ---
 # Solution: Key Verification 🔑.
 
 - It is possible to sign the key with another private key and verify the signature.
-- In HTTPs: the authority signatures (public keys) are saved in the keychain. 
-- In messaging: users must check the key fingerprints of other party.
 
 ^ Lucky enough it is possible to sign the public key and verify the signature. However you need to always remember to receive the signature to compare against via the trusted communication channel.
+
+---
+# Solution: Key Verification 🔑.
+
+- It is possible to sign the key with another private key and verify the signature.
+- In HTTPs: the authority signatures (public keys) are saved in the keychain. 
+
+---
+# Solution: Key Verification 🔑.
+
+- It is possible to sign the key with another private key and verify the signature.
+- In HTTPs: the authority signatures (public keys) are saved in the keychain. 
+- In messaging: users must check the key fingerprints of other party, via the call or meeting in person.
 
 ---
 ## In Wire 
@@ -253,6 +302,15 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 
 ![](images/cmdr-shane-610506-unsplash.jpg)
 
+
+---
+# Problem 3: Forward secrecy.
+
+- If the 🦅 would record all the encrypted communication between 🦊 and 🐸...
+
+^ Let's imagine that our Eagle is recording the encrypted messages all the time to it's endless hard drives. 
+
+
 ---
 # Problem 3: Forward secrecy.
 
@@ -260,12 +318,13 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 - And then find out the $$K^{Shared}_{🦊🐸}$$.
 - All the previous communication can be decrypted.
 
-^ Let's imagine that our Eagle is recording the encrypted messages all the time to it's endless hard drives. Then if eventually it would be possible to decrypt one message from the communication between the sender and receiver, it would be possible using the same key to decrypt all the previous messages. This is pretty bad!
+^ Then if eventually it would be possible to decrypt one message from the communication between the sender and receiver, it would be possible using the same key to decrypt all the previous messages. This is pretty bad!
 
 ---
 # Solution: Session keys / Key rotation.
 
-- Generate the new key for each message.
+## Generate the new key for each message:
+
 - Rotate using Hash Key Derivation Function (HKDF) - basically hash the previous key: $$K^{n}_{🦊🐸} = HKDF(K^{n-1}_{🦊🐸})$$
 - Can't calculate $$K^{n-1}_{🦊🐸}$$ from $$K^{n}_{🦊🐸}$$.
 
@@ -364,23 +423,27 @@ Using the Diffie-Hellman (DH) procedure, the shared secret key is created: $$K^{
 ^ Even the best protocol cannot protect from iTunes backup ;)
 
 ---
-# How it applies to iOS.
+# iTunes and iCloud backups.
 
-- Basics of not sharing the data with Apple.
-- Push Notifications (APNs) 💔 E2EE.
-- Share extension + E2EE.
+- The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud.
+- Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
 
-^ So in this chapter let's discuss how not to make the end-to-end encryption useless when running on the iOS device, also some information of how to cope with the push notifications 
+^ The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud. Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
 
 ---
-# Threat model.
+# iTunes and iCloud backups.
 
-- Device must be passcode-protected.
-- Not jailbroken.
-- Up to date.
-- So no filesystem access is possible.
+Like that[^1]: 
 
-^ Let's say the use must also care about his privacy to some extent. This includes setting the passcode, not jailbreaking and updating the iOS to the most recent version.
+```swift
+var resourceValues = URLResourceValues()
+resourceValues.isExcludedFromBackup = true
+try mutableURL.setResourceValues(resourceValues)
+```
+
+[^1]: Source: https://github.com/wireapp/wire-ios/blob/develop/WireExtensionComponents/Utilities/URL%2BBackup.swift
+
+^ So let's exclude the sensitive files, like the message database or the key material from the iTunes backup. This can be achieved using the URLResourceValues object having isExcludedFromBackup set to true that can be set on the file URL.
 
 ---
 # Basics of not sharing.
@@ -407,7 +470,7 @@ Every image or video taken on the iPhone has a significant amount of embedded me
 ---
 # Strip metadata using `ImageIO`.
 
-Load image from `Data` to `imageSource` [^4]:
+Load image from `Data` to `imageSource` [^2]:
 
 ```swift
 guard let imageSource = CGImageSourceCreateWithData(data, nil),
@@ -416,7 +479,7 @@ guard let imageSource = CGImageSourceCreateWithData(data, nil),
 }
 ```
 
-[^4]: Source: https://github.com/wireapp/wire-ios-images/blob/develop/Sources/Image%20Processing/NSData+MediaMetadata.swift
+[^2]: Source: https://github.com/wireapp/wire-ios-images/blob/develop/Sources/Image%20Processing/NSData+MediaMetadata.swift
 
 ^ Let's strip this information before uploading it. The ImageIO framework can help us with this task. We have the image as Data, and we can create the CoreGraphics image from it as imageSource.
 
@@ -459,29 +522,6 @@ guard CGImageDestinationFinalize(imageDestination) else {
 ^ And finally create the new image data excluding the metadata.
 
 ---
-# iTunes and iCloud backups.
-
-- The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud.
-- Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
-
-^ The content of the backup is stored plaintext in the iTunes or (even worse) in the iCloud. Since we care not to put user data on our backend, we also have to care not to put it on the Apple backend.
-
----
-# iTunes and iCloud backups.
-
-Like that[^5]: 
-
-```swift
-var resourceValues = URLResourceValues()
-resourceValues.isExcludedFromBackup = true
-try mutableURL.setResourceValues(resourceValues)
-```
-
-[^5]: Source: https://github.com/wireapp/wire-ios/blob/develop/WireExtensionComponents/Utilities/URL%2BBackup.swift
-
-^ So let's exclude the sensitive files, like the message database or the key material from the iTunes backup. This can be achieved using the URLResourceValues object having isExcludedFromBackup set to true that can be set on the file URL.
-
----
 # CallKit.
 
 - CallKit used to sync the calls metadata between the devices.
@@ -493,10 +533,66 @@ try mutableURL.setResourceValues(resourceValues)
 # Push Notifications (APNs) 💔 E2EE.
 
 - The message sent via the push notification is visible to Apple.
+
+^ So let's talk about the push notifications. First of all, the wire backend does not know the message content, or even what kind of message must be sent. So it cannot really include the message text in the push notification.
+
+---
+# Push Notifications (APNs) 💔 E2EE.
+
+- The message sent via the push notification is visible to Apple.
 - APNs allows sending the "VoIP APN".
 - Using **VoIP** push, the iOS application can run the code in the background, then it can fetch messages and display the local push.
 
-^ So let's talk about the push notifications. First of all, the wire backend does not know the message content, or even what kind of message must be sent. So it cannot really include the message text in the push notification. Lucky enough, there is the way for the end-to-end encrypted app to be able to dispatch the notification.
+^ Lucky enough, there is the way for the end-to-end encrypted app to be able to dispatch the notification. We can send the VoIP push notification with the PushKit. Using this kind of push, the iOS application can run the code in the background, then it can fetch messages and display the local push.
+
+---
+
+```
++---------+         +-----------+      +--------+     +----------+
+|  Your   |         | APN Apple |      | Sender |     | Receiver |
+| Backend |         |  Backend  |      |        |     |          |
++----+----+         +-----+-----+      +----+---+     +----+-----+
+     |                    |                 |              |
+     | <-- Encrypted message for Receiver --+              |
+```
+
+^ So we have our sender, receiver, our backend and apple push backend. We start from the momen the sender is delivering the encrypted message payload to the server.
+
+---
+
+```
++---------+         +-----------+      +--------+     +----------+
+|  Your   |         | APN Apple |      | Sender |     | Receiver |
+| Backend |         |  Backend  |      |        |     |          |
++----+----+         +-----+-----+      +----+---+     +----+-----+
+     |                    |                 |              |
+     | <-- Encrypted message for Receiver --+              |
+     |                    |                 |              |
+     +---- VoIP APN ----> |                 |              |
+     |                    |                 |              |
+     |                    +---------- VoIP APN ----------> BG
+```
+
+^ The backend cannot see the content of the message, so it is dispatching the empty voip notification to the receiver via the apple push backend.
+
+---
+
+```
++---------+         +-----------+      +--------+     +----------+
+|  Your   |         | APN Apple |      | Sender |     | Receiver |
+| Backend |         |  Backend  |      |        |     |          |
++----+----+         +-----+-----+      +----+---+     +----+-----+
+     |                    |                 |              |
+     | <-- Encrypted message for Receiver --+              |
+     |                    |                 |              |
+     +---- VoIP APN ----> |                 |              |
+     |                    |                 |              |
+     |                    +---------- VoIP APN ----------> BG
+     |                    |                 |              BG
+     | <--- Fetching the new messages via HTTPs ---------+ BG
+```
+
+^ Then the receieving application is started on the background and it is reachig the bakcend to fetch the encrypted message payload.
 
 ---
 
@@ -518,7 +614,7 @@ try mutableURL.setResourceValues(resourceValues)
      |                    |                 |          +--Push---+
 ```
 
-^ We send the so called voice over IP push notification that is designed for the calling applications, so they can set up the call data channel and display the call push notification. It's the great candidate for us, since we are able to spin the app in the background, fetch the encrypted message from the server, decrypt it locally and display it's contents as the local push notification.
+^ To decrypt it and display the local push notification.
 
 ---
 # Problems.
@@ -545,11 +641,30 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 - On iOS, the share extension is the separate process.
 - Database and the crypto material must be moved to the shared container.
-- File sync is necessary: read up here [^6].
+- File sync is necessary: read up here [^3].
 
-[^6]: https://medium.com/@wireapp/the-challenge-of-implementing-ios-share-extension-for-end-to-end-encrypted-messenger-dd33b52b1e97
+[^3]: https://medium.com/@wireapp/the-challenge-of-implementing-ios-share-extension-for-end-to-end-encrypted-messenger-dd33b52b1e97
 
 ^ Another big topic is the share extensions. They on iOS are running in the separate process. The problem is then the crypto material and the app database must be then moved to the shared container. The file access must be synchronized, since the encryption of the message is advancing the encryption session forward.
+
+---
+# Big chats 🤕 E2EE.
+
+![](images/joel-filipe-260016-unsplash.jpg)
+
+- The message must be delivered to each participant.
+
+^ In the group chat, if someone is sending the message it must be encrypted for each receiver separately. 
+
+---
+# Big chats 🤕 E2EE.
+
+![](images/joel-filipe-260016-unsplash.jpg)
+
+- The message must be delivered to each participant.
+- To the each participant's device!
+
+^ Also worth mentioning that in Wire we have the true multi-device support. This means each device has the encryption session with all participants in the chat.  
 
 ---
 # Big chats 🤕 E2EE.
@@ -561,16 +676,24 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 - So when you send one message, say 1 Kilobyte of data in the conversation with N participants where each participant has K devices you actually have to send $$ 1 Kilobyte \times N \ times K $$ messages.
 - 100 participants, each have 5 devices: **0.5 Megabyte**.
 
-^ In the group chat, if someone is sending the message it must be encrypted for each receiver separately. Also worth mentioning that in Wire we have the true multi-device support. This means each device has the encryption session with all participants in the chat. This means that in the really big conversation sending 1 kilobyte message means uploading 500 kilobyte of data.
+^ This means that in the really big conversation sending 1 kilobyte message means uploading 500 kilobyte of data.
 
 ---
 # Sneak peek: MLS.
 
-- MLS stands for the message `Messaging Layer Security`.
-- IETF initiative to develop the common protocol for secure instant messaging.
-- The protocol is being developed in cooperation between IETF, Twitter, Mozilla, Google, Facebook and Wire.
+- MLS is `Messaging Layer Security`.
 
-^ So there is something that I am really excited about. The major companies are working together on the single state of the art protocol called Messaging Layer Security. Twitter, Mozilla, Google, Facebook and Wire as part of the IETF initiative are working together to define the future of the messaging.
+^ So there is something that I am really excited about. The new state of the art protocol is being developed. The new state of the art protocol called Messaging Layer Security.
+
+---
+# Sneak peek: MLS.
+
+- MLS is `Messaging Layer Security`.
+- IETF initiative to develop the common protocol for secure instant messaging.
+- ...in cooperation between Twitter, Mozilla, Google, Facebook and Wire.
+
+
+^ Twitter, Mozilla, Google, Facebook and Wire as part of the IETF initiative are working together to define the future of the messaging. This can become in the future IETF standard.
 
 ---
 # MLS: Stay tuned!
@@ -599,4 +722,4 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 ![inline](images/cc_4_0.png) ![inline](images/cc.png) Presentation is CC BY 4.0 [mikeger/e2ee-presentation](https://github.com/mikeger/e2ee-presentation)
 
-Illustrations: Wired magazine, HBO, Either Edward J. Krasnoborski or F. Mitchell.; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane.
+Illustrations: Wired magazine, HBO, Either Edward J. Krasnoborski or F. Mitchell.; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane, Finn Hackshaw.
