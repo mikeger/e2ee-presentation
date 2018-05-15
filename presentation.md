@@ -1,4 +1,4 @@
-footer: mihail@gerasimenko.me
+footer: UIKonf 2018 • mihail@gerasimenko.me • @GerasimenkoMiha
 autoscale: true
 ## **E2EE**
 ## [End-to-End Encryption]
@@ -14,7 +14,12 @@ autoscale: true
 - 9 years in iOS development.
 - 5 years Berliner.
 
-^ So I studied applied mathematics at Odessa State University, since then worked on quite some projects. I am working and living in Berlin for quite some time now.
+^ I studied applied mathematics at Odessa State University, since then worked on quite some projects. I am working and living in Berlin for quite some time now.
+
+---
+
+> Privacy is the fundamental human right.
+-- Agis Tsaraboulidis
 
 ---
 # Forbidding reality.
@@ -92,7 +97,7 @@ Recently everyone seem to be willing to forbid the end-to-end encrypted messagin
 ---
 # About Wire.
 
-![left](images/win311logo.png)
+![left fit](images/logo.png)
 
 - I am the part of the awesome iOS team at Wire.
 
@@ -101,7 +106,7 @@ Recently everyone seem to be willing to forbid the end-to-end encrypted messagin
 ---
 # About Wire.
 
-![left](images/win311logo.png)
+![left fit](images/logo.png)
 
 - I am the part of the awesome iOS team at Wire.
 - We are one of E2EE pioneers: first version released in 2015.
@@ -128,7 +133,9 @@ Recently everyone seem to be willing to forbid the end-to-end encrypted messagin
 ^ Good news: we are also open-source, so you can see our bugs and how we are fixing them.
 
 ---
-# It's live. Also PRs.
+# It's live. Also PRs. 
+## 400k SLOC Swift / Obj-C.
+### GPLv3
 
 ^ Live, with the pull requests! Pretty awesome, also some pressure to work in the public. 
 
@@ -377,7 +384,7 @@ This is not possible for reasons: phone or other device is not online.
 # All good.
 # In theory.
 
-![](images/katya-austin-554633-unsplash.jpg)
+![left](images/katya-austin-554633-unsplash.jpg)
 
 ^ All good in theory.
 
@@ -394,7 +401,7 @@ This is not possible for reasons: phone or other device is not online.
 - No good protocol to solve problems 3-5.
 - The performance of the key pair $$(K^{Pub}, K^{Priv})$$ generation improved dramatically, since:
 - Elliptic curve crypto development.
-- Mobile CPUs are way faster nowadays.
+- Mobile CPUs are way faster nowadays .
 
 ^ So you might wonder why the good end-to-end messengers became available only recently? Well, all those problems where not solved at once, the protocol development went the long way from PGP, Off-the-record protocol and others. Together with that, the performance of the cryptography also went the long way to the current state.
 
@@ -444,16 +451,6 @@ try mutableURL.setResourceValues(resourceValues)
 [^1]: Source: https://github.com/wireapp/wire-ios/blob/develop/WireExtensionComponents/Utilities/URL%2BBackup.swift
 
 ^ So let's exclude the sensitive files, like the message database or the key material from the iTunes backup. This can be achieved using the URLResourceValues object having isExcludedFromBackup set to true that can be set on the file URL.
-
----
-# Basics of not sharing.
-
-- Apple cares about user privacy.
-- Image and Video metadata.
-- iTunes and iCloud backups.
-- CallKit 🤙.
-
-^ Thanks to Tim Cook, the Apple is one of the bigger companies that care about the user privacy. However this does not mean that we can rest now and stop thinking about the users of our apps. 
 
 ---
 # Image, Video metadata.
@@ -548,12 +545,12 @@ guard CGImageDestinationFinalize(imageDestination) else {
 ---
 
 ```
-+---------+         +-----------+      +--------+     +----------+
-|  Your   |         | APN Apple |      | Sender |     | Receiver |
-| Backend |         |  Backend  |      |        |     |          |
-+----+----+         +-----+-----+      +----+---+     +----+-----+
-     |                    |                 |              |
-     | <-- Encrypted message for Receiver --+              |
++--------+              +---------+      +-----------+      +----------+
+| Sender |              |  Your   |      | APN Apple |      | Receiver |
+|        |              | Backend |      |  Backend  |      |          |
++---+----+              +----+----+      +-----+-----+      +----+-----+
+    |     Encrypted          |                 |                 |
+    +--message for Receiver->|                 |                 |
 ```
 
 ^ So we have our sender, receiver, our backend and apple push backend. We start from the momen the sender is delivering the encrypted message payload to the server.
@@ -561,16 +558,16 @@ guard CGImageDestinationFinalize(imageDestination) else {
 ---
 
 ```
-+---------+         +-----------+      +--------+     +----------+
-|  Your   |         | APN Apple |      | Sender |     | Receiver |
-| Backend |         |  Backend  |      |        |     |          |
-+----+----+         +-----+-----+      +----+---+     +----+-----+
-     |                    |                 |              |
-     | <-- Encrypted message for Receiver --+              |
-     |                    |                 |              |
-     +---- VoIP APN ----> |                 |              |
-     |                    |                 |              |
-     |                    +---------- VoIP APN ----------> BG
++--------+              +---------+      +-----------+      +----------+
+| Sender |              |  Your   |      | APN Apple |      | Receiver |
+|        |              | Backend |      |  Backend  |      |          |
++---+----+              +----+----+      +-----+-----+      +----+-----+
+    |     Encrypted          |                 |                 |
+    +--message for Receiver->|                 |                 |
+    |                        |                 |                 |
+    |                        +--- VoIP APN --->|                 |             
+    |                        |                 |                 |
+    |                        |                 +--- VoIP APN --->BG
 ```
 
 ^ The backend cannot see the content of the message, so it is dispatching the empty voip notification to the receiver via the apple push backend.
@@ -578,18 +575,18 @@ guard CGImageDestinationFinalize(imageDestination) else {
 ---
 
 ```
-+---------+         +-----------+      +--------+     +----------+
-|  Your   |         | APN Apple |      | Sender |     | Receiver |
-| Backend |         |  Backend  |      |        |     |          |
-+----+----+         +-----+-----+      +----+---+     +----+-----+
-     |                    |                 |              |
-     | <-- Encrypted message for Receiver --+              |
-     |                    |                 |              |
-     +---- VoIP APN ----> |                 |              |
-     |                    |                 |              |
-     |                    +---------- VoIP APN ----------> BG
-     |                    |                 |              BG
-     | <--- Fetching the new messages via HTTPs ---------+ BG
++--------+              +---------+      +-----------+      +----------+
+| Sender |              |  Your   |      | APN Apple |      | Receiver |
+|        |              | Backend |      |  Backend  |      |          |
++---+----+              +----+----+      +-----+-----+      +----+-----+
+    |     Encrypted          |                 |                 |
+    +--message for Receiver->|                 |                 |
+    |                        |                 |                 |
+    |                        +--- VoIP APN --->|                 |             
+    |                        |                 |                 |
+    |                        |                 +--- VoIP APN --->BG
+    |                        |                 |                 BG
+    |                        |<--- Fetching the new messages ---+BG
 ```
 
 ^ Then the receieving application is started on the background and it is reachig the bakcend to fetch the encrypted message payload.
@@ -597,21 +594,22 @@ guard CGImageDestinationFinalize(imageDestination) else {
 ---
 
 ```
-+---------+         +-----------+      +--------+     +----------+
-|  Your   |         | APN Apple |      | Sender |     | Receiver |
-| Backend |         |  Backend  |      |        |     |          |
-+----+----+         +-----+-----+      +----+---+     +----+-----+
-     |                    |                 |              |
-     | <-- Encrypted message for Receiver --+              |
-     |                    |                 |              |
-     +---- VoIP APN ----> |                 |              |
-     |                    |                 |              |
-     |                    +---------- VoIP APN ----------> BG
-     |                    |                 |              BG
-     | <--- Fetching the new messages via HTTPs ---------+ BG
-     |                    |                 |          +-Display-+
-     |                    |                 |          |  Local  |
-     |                    |                 |          +--Push---+
++--------+              +---------+      +-----------+      +----------+
+| Sender |              |  Your   |      | APN Apple |      | Receiver |
+|        |              | Backend |      |  Backend  |      |          |
++---+----+              +----+----+      +-----+-----+      +----+-----+
+    |     Encrypted          |                 |                 |
+    +--message for Receiver->|                 |                 |
+    |                        |                 |                 |
+    |                        +--- VoIP APN --->|                 |             
+    |                        |                 |                 |
+    |                        |                 +--- VoIP APN --->BG
+    |                        |                 |                 BG
+    |                        |<--- Fetching the new messages ---+BG
+    |                        |                 |                 |
+    |                        |                 |             +-Display-+
+    |                        |                 |             |  Local  |
+    |                        |                 |             +--Push---+
 ```
 
 ^ To decrypt it and display the local push notification.
@@ -722,4 +720,4 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 ![inline](images/cc_4_0.png) ![inline](images/cc.png) Presentation is CC BY 4.0 [mikeger/e2ee-presentation](https://github.com/mikeger/e2ee-presentation)
 
-Illustrations: Wired magazine, HBO, Either Edward J. Krasnoborski or F. Mitchell.; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane, Finn Hackshaw.
+Illustrations: Wired magazine, HBO; Unsplash: Katya Austin, rawpixel, Richard Payette, Joel Filipe, CMDR Shane, Finn Hackshaw.
