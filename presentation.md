@@ -671,8 +671,8 @@ application.setMinimumBackgroundFetchInterval(timeInterval)
 
 - The message must be delivered to each participant.
 - To the each participant's device!
-- So when you send one message, say 1 Kilobyte of data in the conversation with N participants where each participant has K devices you actually have to send $$ 1 Kilobyte \times N \ times K $$ messages.
-- 100 participants, each have 5 devices: **0.5 Megabyte**.
+- So when you send one message, say 1 Kilobyte of data in the conversation with N participants where each participant has K devices you actually have to send $$ 1 Kb \times N \times K $$ messages.
+- 100 participants, each have 5 devices: $$0.5 Mb$$.
 
 ^ This means that in the really big conversation sending 1 kilobyte message means uploading 500 kilobyte of data.
 
